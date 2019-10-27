@@ -1,0 +1,192 @@
+.navbar {
+    flex: none;
+    display: flex;
+    background: #eeeeee;
+    margin-top: 20rpx;
+    z-index: 50;
+}
+
+.navbar .item {
+    position: relative;
+    flex: auto;
+    text-align: center;
+    line-height: 60rpx;
+    font-size: 24rpx;
+    color: #666666;
+    font-family: Microsoft YaHei;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 200rpx 0;
+    box-sizing: border-box;
+}
+
+.li {
+    font-size: 30rpx;
+    display: flex;
+    justify-content: space-between;
+    height: 60rpx;
+    line-height: 60rpx;
+    margin: 0;
+    padding: 0 3%;
+    border-bottom: 1px solid #f6f6f6;
+    border-radius: 14rpx;
+    background-color: #fff;
+    color: #353535;
+}
+
+.picker {
+    width: 100%;
+}
+
+.icon-gengduo,.right {
+    display: inline-block;
+    color: #bbb;
+}
+
+.textLeft {
+    width: 50%;
+}
+
+.textRIght {
+    float: right;
+    width: 20%;
+    text-align: right;
+}
+
+.setcontext {
+    float: right;
+    width: 80%;
+    text-align: right;
+    color: #888888;
+}
+
+.viewTitleWord {
+    font-size: 18pt;
+}
+
+.viewTitleSemiWord {
+    text-align: right;
+    font-size: 12pt;
+    color: #888888;
+}
+
+.sliderClass {
+    height: 70rpx;
+}
+
+.checkBox {
+    padding-left: 20rpx;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+}
+
+.switchContent {
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+    width: 44%;
+}
+
+.modalDlg {
+    position: fixed;
+    top: 30%;
+    left: 3%;
+    right: 3%;
+    margin: 0 auto;
+    z-index: 9999;
+    background-color: #fff;
+    border-radius: 36rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mask {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #000;
+    z-index: 9000;
+    opacity: 0.7;
+}
+
+.modal-btn-wrapper-top {
+    display: flex;
+    flex-direction: row;
+    height: 61rpx;
+    line-height: 61rpx;
+    width: 100%;
+    border-bottom: 2rpx solid rgba(7,17,27,0.1);
+}
+
+.modal-btn-wrapper-bottom {
+    display: flex;
+    flex-direction: row;
+    height: 100rpx;
+    line-height: 100rpx;
+    width: 100%;
+    border-top: 2rpx solid rgba(7,17,27,0.1);
+}
+
+.cancel-btn,.confirm-btn {
+    flex: 1;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    font-size: 32rpx;
+}
+
+.cancel-btn {
+    border-right: 2rpx solid rgba(7,17,27,0.1);
+}
+
+.equipBox {
+    display: flex;
+    height: 130rpx;
+    line-height: 60rpx;
+}
+
+.equipTopLeft {
+    padding-left: 20rpx;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+}
+
+.equipTopRight {
+    padding-right: 20rpx;
+    padding-top: 10rpx;
+    padding-bottom: 10rpx;
+    position: absolute;
+    right: 20rpx;
+    font-size: 12pt;
+    color: #888888;
+}
+
+.equipBottomLeft {
+    padding-right: 20rpx;
+    padding-left: 20rpx;
+    padding-top: 60rpx;
+    padding-bottom: 10rpx;
+    position: absolute;
+    font-size: 12pt;
+    color: #888888;
+}
+
+.equipBottomRight {
+    padding-right: 20rpx;
+    padding-top: 60rpx;
+    padding-bottom: 10rpx;
+    position: absolute;
+    right: 20rpx;
+    font-size: 12pt;
+    color: #888888;
+}
