@@ -1,5 +1,6 @@
 .contentAll {
     text-align: center;
+    column-count: 2；
 }
 
 .contentView1 {
@@ -52,32 +53,32 @@
 
 .LineColor1 {
     border-bottom: 4rpx solid rgb(192,109,99);
-    height: 80rpx;
+    height: 250rpx;
 }
 
 .LineColor2 {
     border-bottom: 4rpx solid rgb(137,162,123);
-    height: 80rpx;
+    height: 250rpx;
 }
 
 .LineColor3 {
     border-bottom: 4rpx solid rgb(133,163,213);
-    height: 80rpx;
+    height: 250rpx;
 }
 
 .LineColor4 {
     border-bottom: 4rpx solid rgb(228,194,131);
-    height: 80rpx;
+    height: 250rpx;
 }
 
 .LineColor5 {
     border-bottom: 4rpx solid rgb(110,157,180);
-    height: 80rpx;
+    height: 250rpx;
 }
 
 .LineColor6 {
     border-bottom: 4rpx solid rgb(144,136,179);
-    height: 80rpx;
+    height: 250rpx;
 }
 
 .button {

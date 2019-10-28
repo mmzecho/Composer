@@ -74,11 +74,6 @@ Page({
             url: "/pages/zy/syxj/syxj"
         });
     },
-    NavigatorToLiuyan: function() {
-        wx.navigateTo({
-            url: "/pages/liuyan/liuyan"
-        });
-    },
     onShow: function() {},
     onHide: function() {},
     onUnload: function() {},
