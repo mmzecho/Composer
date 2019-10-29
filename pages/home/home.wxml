@@ -1,4 +1,11 @@
 <view class="contentAll">
+    <view class="contentView7">
+        <view class="LineColor7">
+            <image src="../../image/1.jpg" style="width:50%;height:100%"></image>
+        </view>
+        <button bindtap="NavigatorToHFH" class="button:color7">hfh</button>
+        <!-- <button bindtap="NavigatorTo" class="button:color7">yf</button> -->
+    </view>
     <view class="contentView1">
         <view class="LineColor1">
             <image src="../../image/6.jpg" style="width:50%;height:100%"></image>

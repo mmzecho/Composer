@@ -6,11 +6,11 @@ Page({
         winHeight: "",
         currentTab: 0,
         shareImgUrl: [],
-        equipList: [],
+      equipList: [[[{ index: 0, description:'for test'}, '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']]],
         levelList: [],
       equipMutliArray: [[['210', '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']]],
     
-        equipMutilIndexArray: [ [ 1, 2 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
+        equipMutilIndexArray: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
         equipDetail: [ {
             "法强": 20,
             "专注": 20
@@ -377,68 +377,74 @@ Page({
                 });
             }
         });
-        var r = wx.cloud.database();
-        r.collection("enchant").where({
-            _openid: this.data.openid
-        }).get({
-            success: function(t) {
-                a.setData({
-                    enchantArray: t.data[0].enchant_DPS
-                });
-            }
-        }), r.collection("stone").where({
-            _openid: this.data.openid
-        }).get({
-            success: function(t) {
-                a.setData({
-                    stoneArray: t.data[0].stone_DPS
-                });
-            }
-        }), r.collection("food").where({
-            _openid: this.data.openid
-        }).get({
-            success: function(t) {
-                a.setData({
-                    foodArray: t.data[0].food
-                });
-            }
-        }), r.collection("equipment").doc("fxdps").get({
-            success: function(t) {
-                console.log(t);
-                var e = [], r = t.data.equipListFXD;
-                for (var n in r) {
-                    var i = [];
-                    for (var s in r[n]) i.push(r[n][s].name);
-                    e.push([ i, r[n][0].level.split(";") ]);
-                }
-                a.setData({
-                    equipList: r,
-                    levelList: t.data.level,
-                    equipMutliArray: e
-                });
-            }
-        });
+      
+        // var r = wx.cloud.database();
+        // r.collection("enchant").where({
+        //     _openid: this.data.openid
+        // }).get({
+        //     success: function(t) {
+        //         a.setData({
+        //             enchantArray: t.data[0].enchant_DPS
+        //         });
+        //     }
+        // }), r.collection("stone").where({
+        //     _openid: this.data.openid
+        // }).get({
+        //     success: function(t) {
+        //         a.setData({
+        //             stoneArray: t.data[0].stone_DPS
+        //         });
+        //     }
+        // }), r.collection("food").where({
+        //     _openid: this.data.openid
+        // }).get({
+        //     success: function(t) {
+        //         a.setData({
+        //             foodArray: t.data[0].food
+        //         });
+        //     }
+        // }), r.collection("equipment").doc("fxdps").get({
+        //     success: function(t) {
+        //         console.log(t);
+        //         var e = [], r = t.data.equipListFXD;
+        //         for (var n in r) {
+        //             var i = [];
+        //             for (var s in r[n]) i.push(r[n][s].name);
+        //             e.push([ i, r[n][0].level.split(";") ]);
+        //         }
+        //         a.setData({
+        //             equipList: r,
+        //             levelList: t.data.level,
+        //             equipMutliArray: e
+        //         });
+        //     }
+        // });
     },
     getDecimal: function(a) {
         return Math.round(100 * a) / 100;
     },
     bindMultiPickerChange: function(a) {
+      console.log('picker发送选择改变，携带值为', a.detail.value);
         var t = a.target.dataset.idx, e = {
-            equipMutilIndexArray: this.data.equipMutilIndexArray
+            equipMutilIndexArray: this.data.equipMutilIndexArray,
+            equipMutliArray:this.data.equipMutliArray
         };
-        null == a.detail.value[0] && (a.detail.value[0] = 0), null == a.detail.value[1] && (a.detail.value[1] = 0), 
-        e.equipMutilIndexArray[t] = a.detail.value, this.setData(e), this.updatePorperty();
+        // null == a.detail.value[0] && (a.detail.value[0] = 0), null == a.detail.value[1] && (a.detail.value[1] = 0), 
+        // e.equipMutilIndexArray[t] = a.detail.value, this.setData(e), this.updatePorperty();
+      // console.log("logggg" + this.data.equipMutliArray[this.data.equipForIndex][0][this.data.equipMutilIndexArray[this.data.equipForIndex][0]]);
     },
     bindMultiPickerColumnChange: function(a) {
+      console.log('修改的列为', a.detail.column, '，值为', a.detail.value);
         var t = a.target.dataset.idx, e = {
             equipMutliArray: this.data.equipMutliArray
         };
         switch (a.detail.column) {
           case 0:
             var r = this.data.equipList[t][a.detail.value].level;
-            e.equipMutliArray[t][1] = r.split(";");
+            // e.equipMutliArray[t][1] = r.split(";");
         }
         this.setData(e);
+     
     },
     getLevelDetail: function(a, t) {
         var e = {

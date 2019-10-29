@@ -1,8 +1,8 @@
 App({
     onLaunch: function() {
-        wx.cloud.init({
-            env: "simulate-39ffa2"
-        });
+        // wx.cloud.init({
+        //     env: "simulate-39ffa2"
+        // });
     },
     globalData: {
         equipArray: [ [ {

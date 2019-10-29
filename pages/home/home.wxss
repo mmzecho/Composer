@@ -51,6 +51,14 @@
     margin-bottom: 20rpx;
 }
 
+.contentView7 {
+    width: 80%;
+    border: 8rpx solid rgb(226, 176, 219);
+    border-radius: 40rpx;
+    margin: 0 auto;
+    margin-bottom: 20rpx;
+}
+
 .LineColor1 {
     border-bottom: 4rpx solid rgb(192,109,99);
     height: 250rpx;
@@ -78,6 +86,11 @@
 
 .LineColor6 {
     border-bottom: 4rpx solid rgb(144,136,179);
+    height: 250rpx;
+}
+
+.LineColor7 {
+    border-bottom: 4rpx solid rgb(226, 176, 219);
     height: 250rpx;
 }
 
@@ -129,6 +142,11 @@ button[disabled]:not([type]) {
 .color6 {
     background-color: white;
     color: rgb(144,136,179);
+}
+
+.color7 {
+    background-color: white;
+    color: rgb(226, 176, 219);
 }
 
 .bottomText {

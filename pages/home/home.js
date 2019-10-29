@@ -8,16 +8,16 @@ Page({
     },
     onReady: function() {
         var a = this;
-        wx.cloud.database().collection("notice").where({
-            _openid: this.data.openid
-        }).get({
-            success: function(o) {
-                console.log(o.data[0].notice), a.setData({
-                    showCanvas: !1,
-                    notice: o.data[0].notice
-                });
-            }
-        });
+        // wx.cloud.database().collection("notice").where({
+        //     _openid: this.data.openid
+        // }).get({
+        //     success: function(o) {
+        //         console.log(o.data[0].notice), a.setData({
+        //             showCanvas: !1,
+        //             notice: o.data[0].notice
+        //         });
+        //     }
+        // });
     },
     ok: function(a) {
         this.setData({
@@ -73,6 +73,11 @@ Page({
         wx.navigateTo({
             url: "/pages/zy/syxj/syxj"
         });
+    },
+    NavigatorToHFH: function () {
+    wx.navigateTo({
+      url: "/pages/yf/hfh/hfh"
+    });
     },
     onShow: function() {},
     onHide: function() {},
