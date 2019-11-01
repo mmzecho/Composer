@@ -6,9 +6,10 @@ Page({
         winHeight: "",
         currentTab: 0,
         shareImgUrl: [],
-      equipList: [[[{ index: 0, description:'for test'}, '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']]],
-        levelList: [],
-      equipMutliArray: [[['210', '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']]],
+      // equipList:[],
+      equipList: [[{ index: 0, description: 'for test', from: 'th', level: '124;128;129', detail: '攻击;专注;30' }, { index: 1, description: 'for test2', from: 'lq', level: '125;126;127', detail: '31;30;30' }], [{ index: 0, description: 'for test', from: 'th' }, { index: 1, description: 'for test2', from: 'lq' }], [['210', '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']]],
+      levelList: [{ index: 0, level30: 'for test'}],
+      equipMutliArray: [[['th', 'lq'], ['choose one']], [['210', '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']]],
     
         equipMutilIndexArray: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
         equipDetail: [ {
@@ -273,7 +274,8 @@ Page({
         tianqiang: 0,
         jianhe: 0,
         zuizhong: 0,
-        showCanvas: !0
+        showCanvas: !0,
+        会心:0,
     },
     mutiCheckBox: function(a) {
         this.setData({
@@ -424,14 +426,14 @@ Page({
         return Math.round(100 * a) / 100;
     },
     bindMultiPickerChange: function(a) {
-      console.log('picker发送选择改变，携带值为', a.detail.value);
+      console.log('picker发送选择改变，携带值为', a.detail.value, a.target.dataset.idx);
         var t = a.target.dataset.idx, e = {
             equipMutilIndexArray: this.data.equipMutilIndexArray,
             equipMutliArray:this.data.equipMutliArray
         };
-        // null == a.detail.value[0] && (a.detail.value[0] = 0), null == a.detail.value[1] && (a.detail.value[1] = 0), 
-        // e.equipMutilIndexArray[t] = a.detail.value, this.setData(e), this.updatePorperty();
-      // console.log("logggg" + this.data.equipMutliArray[this.data.equipForIndex][0][this.data.equipMutilIndexArray[this.data.equipForIndex][0]]);
+        null == a.detail.value[0] && (a.detail.value[0] = 0), null == a.detail.value[1] && (a.detail.value[1] = 0), 
+        e.equipMutilIndexArray[t] = a.detail.value, this.setData(e), this.updatePorperty();
+      console.log("logggg" + this.data.equipMutliArray[this.data.equipForIndex][0][this.data.equipMutilIndexArray[this.data.equipForIndex][0]]);
     },
     bindMultiPickerColumnChange: function(a) {
       console.log('修改的列为', a.detail.column, '，值为', a.detail.value);
@@ -441,7 +443,9 @@ Page({
         switch (a.detail.column) {
           case 0:
             var r = this.data.equipList[t][a.detail.value].level;
-            // e.equipMutliArray[t][1] = r.split(";");
+            var z = this.data.equipList[t][a.detail.value].detail;
+            console.log('var r ', r, ',detail', z);
+            e.equipMutliArray[t][1] = r.split(";");
         }
         this.setData(e);
      
@@ -451,8 +455,10 @@ Page({
             levelList: this.data.levelList
         };
         switch (t) {
-          case "65":
-            return e.levelList[a].level65;
+          case "0":
+            return e.levelList[a].level30;
+          case "30":
+            return e.levelList[a].level30;
 
           case "75":
             return e.levelList[a].level75;
@@ -492,6 +498,8 @@ Page({
         }
     },
     updatePorperty: function() {
+      var b = this.data.equipList[0][this.data.equipMutilIndexArray[0][0]].level.split(";")[this.data.equipMutilIndexArray[0][1]];
+      console.log('updateproperty' + b);
         for (var a = {
             propertyList: this.data.propertyList,
             zuizhong: this.data.zuizhong,
