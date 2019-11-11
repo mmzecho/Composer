@@ -21,6 +21,10 @@
         </view>
     </view>
 </view>
+
+
+
+
 <view hidden="{{currentTab!==1}}">
     <view class="viewShadow">
         <view class="picker">

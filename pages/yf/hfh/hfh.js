@@ -7,11 +7,11 @@ Page({
         currentTab: 0,
         shareImgUrl: [],
       // equipList:[],
-      equipList: [[{ index: 0, description: 'for test', from: 'th', level: '124;128;129', detail: '攻击;专注;30' }, { index: 1, description: 'for test2', from: 'lq', level: '125;126;127', detail: '31;30;30' }], [{ index: 0, description: 'for test', from: 'th' }, { index: 1, description: 'for test2', from: 'lq' }], [['210', '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']]],
-      levelList: [{ index: 0, level30: 'for test'}],
-      equipMutliArray: [[['th', 'lq'], ['choose one']], [['210', '225'], ['th', 'lq']], [['210', '225'], ['th', 'lq']]],
+      equipList: [[{ index: 0, description: 'for test', from: 'th', level: '124;128;129', detail: '属性;攻击;强度;专精;会心;专注;急速', name: 'a;b;c;d;e' }, { index: 1, description: 'for test2', from: 'lq', level: '125;126;127', detail: '31;30;30' }], [{ index: 0, description: 'for test', from: 'th', level: '124;128;129', detail: '属性;攻击;强度;专精;会心;专注;急速', name: 'a;b;c;d;e' }, { index: 1, description: 'for test2', from: 'lq', level: '188;128;129', detail: '属性;攻击;强度;专精;会心;专注;急速', name: 'a;b;c;d;e'}], [[{ index: 0, description: 'for test', from: 'th', level: '124;128;129', detail: '属性;攻击;强度;专精;会心;专注;急速', name: 'a;b;c;d;e' }, { index: 1, description: 'for test2', from: 'lq', level: '125;126;127', detail: '31;30;30' }], [{ index: 0, description: 'for test', from: 'th', level: '124;128;129', detail: '属性;攻击;强度;专精;会心;专注;急速', name: 'a;b;c;d;e' }, { index: 1, description: 'for test2', from: 'lq', level: '125;126;127', detail: '31;30;30' }]], [['210', '225'], ['th', 'lq']]],
+      levelList: [{ index: 0, level30: '33;44;55;66;77;88;99'}],
+      equipMutliArray: [[['th', 'lq'], ['choose one']], [['th', 'lq'], ['choose one']], [['210', '225'], ['th', 'lq']]],
     
-        equipMutilIndexArray: [ [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ], [ 0, 0 ] ],
+      equipMutilIndexArray: [[{ index: 0, description: 'for test', from: 'th', level: '124;128;129', detail: '攻击;专注;30' }, 0], [{ index: 0, description: 'for test qqq2', from: 'th', level: '124;128;129', detail: '攻击;专注;30' }, 0]],
         equipDetail: [ {
             "法强": 20,
             "专注": 20
@@ -431,9 +431,10 @@ Page({
             equipMutilIndexArray: this.data.equipMutilIndexArray,
             equipMutliArray:this.data.equipMutliArray
         };
+      console.log("logggg" + e.equipMutilIndexArray[0][0].detail + "," + e.equipMutilIndexArray.length);
         null == a.detail.value[0] && (a.detail.value[0] = 0), null == a.detail.value[1] && (a.detail.value[1] = 0), 
         e.equipMutilIndexArray[t] = a.detail.value, this.setData(e), this.updatePorperty();
-      console.log("logggg" + this.data.equipMutliArray[this.data.equipForIndex][0][this.data.equipMutilIndexArray[this.data.equipForIndex][0]]);
+      
     },
     bindMultiPickerColumnChange: function(a) {
       console.log('修改的列为', a.detail.column, '，值为', a.detail.value);
@@ -444,7 +445,7 @@ Page({
           case 0:
             var r = this.data.equipList[t][a.detail.value].level;
             var z = this.data.equipList[t][a.detail.value].detail;
-            console.log('var r ', r, ',detail', z);
+            console.log(t, a.detail.value,'var r ', r, ',detail', z);
             e.equipMutliArray[t][1] = r.split(";");
         }
         this.setData(e);
@@ -455,7 +456,8 @@ Page({
             levelList: this.data.levelList
         };
         switch (t) {
-          case "0":
+          case "124":
+            console.log("getLevelDetail", e.levelList[a].level30);
             return e.levelList[a].level30;
           case "30":
             return e.levelList[a].level30;
@@ -498,8 +500,9 @@ Page({
         }
     },
     updatePorperty: function() {
-      var b = this.data.equipList[0][this.data.equipMutilIndexArray[0][0]].level.split(";")[this.data.equipMutilIndexArray[0][1]];
-      console.log('updateproperty' + b);
+      var aa = this.data.equipMutilIndexArray[0][0];
+      // var b = this.data.equipList[0][this.data.equipMutilIndexArray[0][0]].level.split(";")[this.data.equipMutilIndexArray[0][1]];
+      console.log('updateproperty' + aa);
         for (var a = {
             propertyList: this.data.propertyList,
             zuizhong: this.data.zuizhong,
@@ -565,11 +568,12 @@ Page({
         a.propertyList[l].percent = this.getDecimal(a.propertyList[l].percent);
         a.zuizhong = this.getDecimal(a.propertyList[this.data.攻击].value * (1 + a.propertyList[this.data.强度].percent / 1e3)), 
         this.setData(a);
+      console.log("propertyList", a.propertyList);
     },
     drawCanvas: function() {
         var a = this, t = new Promise(function(a, t) {
             wx.getImageInfo({
-                src: "../../../image/yj_bg_middle.jpg",
+                src: "../../../image/1.jpg",
                 success: function(t) {
                     a(t);
                 }
@@ -583,33 +587,37 @@ Page({
             });
         });
         Promise.all([ t, e ]).then(function(t) {
-            console.log(t);
+          
             var e = wx.createCanvasContext("shareImg");
+          console.log("Promise", t, "2", e);
             e.setFillStyle("white"), e.fillRect(0, 0, 863, 485), e.setGlobalAlpha(.3), e.drawImage("../../../" + t[0].path, 0, 0, 863, 485), 
             e.setGlobalAlpha(1), e.setTextAlign("left"), e.setFillStyle("black"), e.setFontSize(30), 
-            e.fillText("古剑奇谭网络版配装器", 250, 40), e.setFontSize(24), e.fillText("门派：御剑    专精：飞星篇", 450, 80), 
+            e.fillText("xxxxxpzq", 250, 40), e.setFontSize(24), e.fillText("门派：yf    专精：hfh", 450, 80), 
             e.setFontSize(18);
-            for (n = 0; n < a.data.equipList.length; n++) e.fillText(a.data.equipList[n][a.data.equipMutilIndexArray[n][0]].name, 40, 27 * n + 80);
-            e.setFontSize(8), e.setFillStyle("#666666");
-            for (n = 0; n < a.data.equipList.length; n++) e.fillText(a.data.equipList[n][a.data.equipMutilIndexArray[n][0]].description, 40, 27 * n + 90);
-            e.setFontSize(12);
-            for (n = 0; n < a.data.equipList.length; n++) e.fillText(a.data.equipList[n][a.data.equipMutilIndexArray[n][0]].from, 200, 27 * n + 88);
-            for (n = 0; n < a.data.levelList.length; n++) e.fillText(a.data.equipList[n][a.data.equipMutilIndexArray[n][0]].level.split(";")[a.data.equipMutilIndexArray[n][1]], 280, 27 * n + 88);
-            e.setFontSize(12), e.fillText(a.data.stoneArray[0][a.data.stoneIndexArray[0]].nameShort, 200, 103), 
-            e.fillText(a.data.stoneArray[1][a.data.stoneIndexArray[1]].nameShort, 280, 103), 
-            e.fillText(a.data.stoneArray[2][a.data.stoneIndexArray[2]].nameShort, 200, 130), 
-            e.fillText(a.data.stoneArray[3][a.data.stoneIndexArray[3]].nameShort, 280, 130), 
-            e.fillText(a.data.stoneArray[4][a.data.stoneIndexArray[4]].nameShort, 200, 157), 
-            e.fillText(a.data.stoneArray[5][a.data.stoneIndexArray[5]].nameShort, 280, 157), 
-            e.fillText(a.data.stoneArray[6][a.data.stoneIndexArray[6]].nameShort, 200, 346), 
-            e.fillText(a.data.stoneArray[7][a.data.stoneIndexArray[7]].nameShort, 200, 427), 
-            e.fillText(a.data.stoneArray[8][a.data.stoneIndexArray[8]].nameShort, 200, 454), 
-            e.fillText(a.data.enchantArray[0][a.data.enchantIndexArray[0]].name, 200, 76), e.fillText(a.data.enchantArray[1][a.data.enchantIndexArray[1]].name, 200, 184), 
-            e.fillText(a.data.enchantArray[2][a.data.enchantIndexArray[2]].name, 200, 211), 
-            e.fillText(a.data.enchantArray[3][a.data.enchantIndexArray[3]].name, 200, 238), 
-            e.fillText(a.data.enchantArray[4][a.data.enchantIndexArray[4]].name, 200, 265), 
-            e.fillText(a.data.enchantArray[5][a.data.enchantIndexArray[5]].name, 200, 292), 
-            e.fillText(a.data.enchantArray[6][a.data.enchantIndexArray[6]].name, 200, 319), 
+          console.log("test for " + a.data.equipList[0][a.data.equipMutilIndexArray[0][0]].name);
+          e.fillText(a.data.equipList[0][a.data.equipMutilIndexArray[0][0]].name, 40, 27 * n + 80);
+          e.setFontSize(8), e.setFillStyle("#666666");
+            // for (n = 0; n < a.data.equipList.length; n++) e.fillText(a.data.equipList[n][a.data.equipMutilIndexArray[n][0]].name, 40, 27 * n + 80);
+            // e.setFontSize(8), e.setFillStyle("#666666");
+            // for (n = 0; n < a.data.equipList.length; n++) e.fillText(a.data.equipList[n][a.data.equipMutilIndexArray[n][0]].description, 40, 27 * n + 90);
+            // e.setFontSize(12);
+            // for (n = 0; n < a.data.equipList.length; n++) e.fillText(a.data.equipList[n][a.data.equipMutilIndexArray[n][0]].from, 200, 27 * n + 88);
+            // for (n = 0; n < a.data.levelList.length; n++) e.fillText(a.data.equipList[n][a.data.equipMutilIndexArray[n][0]].level.split(";")[a.data.equipMutilIndexArray[n][1]], 280, 27 * n + 88);
+            // e.setFontSize(12), e.fillText(a.data.stoneArray[0][a.data.stoneIndexArray[0]].nameShort, 200, 103), 
+            // e.fillText(a.data.stoneArray[1][a.data.stoneIndexArray[1]].nameShort, 280, 103), 
+            // e.fillText(a.data.stoneArray[2][a.data.stoneIndexArray[2]].nameShort, 200, 130), 
+            // e.fillText(a.data.stoneArray[3][a.data.stoneIndexArray[3]].nameShort, 280, 130), 
+            // e.fillText(a.data.stoneArray[4][a.data.stoneIndexArray[4]].nameShort, 200, 157), 
+            // e.fillText(a.data.stoneArray[5][a.data.stoneIndexArray[5]].nameShort, 280, 157), 
+            // e.fillText(a.data.stoneArray[6][a.data.stoneIndexArray[6]].nameShort, 200, 346), 
+            // e.fillText(a.data.stoneArray[7][a.data.stoneIndexArray[7]].nameShort, 200, 427), 
+            // e.fillText(a.data.stoneArray[8][a.data.stoneIndexArray[8]].nameShort, 200, 454), 
+            // e.fillText(a.data.enchantArray[0][a.data.enchantIndexArray[0]].name, 200, 76), e.fillText(a.data.enchantArray[1][a.data.enchantIndexArray[1]].name, 200, 184), 
+            // e.fillText(a.data.enchantArray[2][a.data.enchantIndexArray[2]].name, 200, 211), 
+            // e.fillText(a.data.enchantArray[3][a.data.enchantIndexArray[3]].name, 200, 238), 
+            // e.fillText(a.data.enchantArray[4][a.data.enchantIndexArray[4]].name, 200, 265), 
+            // e.fillText(a.data.enchantArray[5][a.data.enchantIndexArray[5]].name, 200, 292), 
+            // e.fillText(a.data.enchantArray[6][a.data.enchantIndexArray[6]].name, 200, 319), 
             e.setFontSize(24), e.setFillStyle("black"), e.fillText("星蕴", 450, 130), e.setFontSize(18);
             for (n = 0; n < a.data.starArray.length; n++) e.fillText(a.data.starArray[n].name, 450 + n % 2 * 100, 25 * (n - n % 2) / 2 + 155);
             e.setTextAlign("right"), e.setFillStyle("#666666");
@@ -627,8 +635,8 @@ Page({
             e.setFillStyle("#666666"), e.setTextAlign("right"), e.fillText(a.data.propertyList[n].percent, 800, 25 * n + 155), 
             e.setTextAlign("left");
             e.setFillStyle("black"), e.fillText("最终", 700, 330), e.setFillStyle("#666666"), 
-            e.setTextAlign("right"), e.fillText(a.data.zuizhong, 800, 330), e.setTextAlign("left"), 
-            e.drawImage("../../../" + t[1].path, 713, 335, 150, 150), e.stroke(), e.draw(!1, a.showCanvas);
+            e.setTextAlign("right"), e.fillText(a.data.zuizhong, 800, 330), e.setTextAlign("left"),
+            e.stroke(), e.draw(!1, a.showCanvas);
         });
     },
     showCanvas: function() {
